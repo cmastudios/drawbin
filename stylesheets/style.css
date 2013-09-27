@@ -1,0 +1,17 @@
+@import url(http://fonts.googleapis.com/css?family=Finger+Paint);
+
+body {
+  background: url(geometry.png);
+}
+
+h1 {
+  font-family: Finger Paint;
+}
+
+#ex1 {
+  border: solid 5px black;
+}
+
+.big-ass-button {
+  font-size: 50px;
+}
