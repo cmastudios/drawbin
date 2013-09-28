@@ -16,29 +16,11 @@ function fillPlaceholder() {
 }
 
 function upload() {
-    var fd = new FormData();
-    var canvas = document.getElementById("drawing");
-    var dataUrl = canvas.toDataURL().split(",")[1];
-    fd.append("image", dataUrl); // Append the file
-    fd.append("key", "3bb2539daf5c6689003a63dafd56d304");
-    fd.append("type", "base64");
-    //var xhr = new XMLHttpRequest();
-    //xhr.open("POST", "http://api.imgur.com/2/upload.json"); // Boooom!
-    //xhr.onload = function () {
-//	alert(JSON.parse(xhr.responseText).upload.links.imgur_page + ".png");
-  //  }
-    //xhr.send(fd);
     $.post("http://api.imgur.com/2/upload.json",
 	   { image: dataUrl, key: "3bb2539daf5c6689003a63dafd56d304", type: "base64"}, function(data) {
-	alert(data.upload.links.imgur_page + ".png");
-    })
-	.done(function() {
-	    alert( "second success" );
-	})
+	       alert(data.upload.links.imgur_page + ".png");
+	   })
 	.fail(function() {
-	    alert( "error" );
-	})
-	.always(function() {
-	    alert( "finished" );
+	    alert("Error uploading image!");
 	});
 }
