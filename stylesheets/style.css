@@ -1,17 +1,68 @@
 @import url(http://fonts.googleapis.com/css?family=Finger+Paint);
 
-body {
-  background: url(geometry.png);
+body, html {
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
-  font-family: Finger Paint;
+    font-family: Finger Paint;
+    display: inline;
+    padding: 5px;
+}
+
+.container {
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    width: 805px;
+    height: 450px;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+.tagline {
+    display: inline;
+    font-family: Helvetica;
 }
 
 #drawing {
-  border: solid 5px black;
+    display: inline-block;
+    width: 700px;
+    height: 350px;
+    margin-left: 50px;
 }
 
-.big-ass-button {
-  font-size: 50px;
+.cont-right {
+    display: inline-block;
+    float: right;
+    width: 50px;
+}
+
+.cont-right img {
+    padding-bottom: 10px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 14px;
+    color: #424242;
+    font-family: Helvetica;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer a {
+    color: #5C5C5C;
+}
+
+.footer a:link, a:visited {
+    text-decoration: none;
+}
+
+.footer a:hover, a:active {
+    text-decoration: underline;
 }

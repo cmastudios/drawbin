@@ -7,12 +7,20 @@
     <title>DrawBin</title>
   </head>
   <body>
-    <h1>DrawBin</h1>
-    <p>Draw an image in your browser and share it instantly!</p>
-    <button onclick='newDrawing'>New drawing</button>
-    <button onclick="upload()">Save</button>
-    <div class='drawings'>
+    <div class="container">
+      <h1>DrawBin</h1>
+      <p class="tagline">Draw an image in your browser and share it instantly!</p>
+      <br>
+      <div class="cont-left"></div>
+      <canvas id="drawing" width="700px" height="350px">Please use a browser that supports HTML5 canvas.</canvas>
+      <div class="cont-right">
+        <img src="images/menu.svg" width="50px" height="50px">
+        <img src="images/upload.svg" width="50px" height="50px">
+        <img src="images/download.svg" width="50px" height="50px">
+      </div>
     </div>
-    <canvas id="drawing" width="500px" height="500px">Please use a browser that supports HTML5 canvas.</canvas>
+    <div class="footer">
+      <p>Made by <a href="https://github.com/cmastudios">Connor</a> and <a href="https://github.com/markacastle">Mark</a>. | Icons by <a href="https://www.iconfinder.com/iconsets/wirecons-free-vector-icons#readme">Timothy Miller</a>. | Fork this on <a href="https://github.com/cmastudios/drawbin">GitHub</a></p>
+    </div>
   </body>
 </html>

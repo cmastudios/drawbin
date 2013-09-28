@@ -6,13 +6,12 @@ function fillPlaceholder() {
     var canvas = document.getElementById("drawing");
     var context = canvas.getContext("2d");
 
-    context.font = "36px Verdana";
-    context.fillStyle = "#000000";
-    context.fillText("HTML5 Canvas Text", 50, 50);
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0, 0, 700, 350);
 
     context.font = "normal 36px Arial";
-    context.strokeStyle = "#000000";
-    context.strokeText("HTML5 Canvas Text", 50, 90);
+    context.fillStyle = "#000000";
+    context.fillText("This is a canvas", 250, 180);
 }
 
 function upload() {
