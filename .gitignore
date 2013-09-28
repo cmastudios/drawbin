@@ -1,0 +1,9 @@
+# Hammer
+Build/
+Includes/
+
+# Preprocessors
+*.sass
+*.scss
+*.coffee
+*.haml
