@@ -1,26 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-    <script src='javascripts/interface.js'></script>
-    <link rel='stylesheet' href='stylesheets/style.css'>
+    <!-- @reload -->
     <title>DrawBin</title>
+    <!-- @stylesheet style -->
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <!-- @javascript interface.js -->
   </head>
   <body>
-    <div class="container">
+    <header>
       <h1>DrawBin</h1>
-      <p class="tagline">Draw an image in your browser and share it instantly!</p>
-      <br>
-      <div class="cont-left"></div>
-      <canvas id="drawing" width="700px" height="350px">Please use a browser that supports HTML5 canvas.</canvas>
-      <div class="cont-right">
-        <img src="images/menu.svg" width="50px" height="50px">
-        <img src="images/upload.svg" width="50px" height="50px">
-        <img src="images/download.svg" width="50px" height="50px">
+      <span class='tagline'>Draw an image in your browser and share it instantly!</span>
+    </header>
+    <div class='container'>
+      <div class='secondary-controls'></div>
+      <canvas id='drawing'>Derp... use a bettar browser!</canvas>
+      <div class='primary-controls'>
+        <img onclick='menu()' src='images/menu.svg'>
+        <br>
+        <img onclick='brushes()' src='images/brush.svg'>
+        <br>
+        <img onclick='upload()' src='images/upload.svg'>
+        <br>
+        <img onclick='download()' src='images/download.svg'>
       </div>
     </div>
-    <div class="footer">
-      <p>Made by <a href="https://github.com/cmastudios">Connor</a> and <a href="https://github.com/markacastle">Mark</a>. | Icons by <a href="https://www.iconfinder.com/iconsets/wirecons-free-vector-icons#readme">Timothy Miller</a>. | Fork this on <a href="https://github.com/cmastudios/drawbin">GitHub</a></p>
-    </div>
+    <footer>
+      <span> Made by <a href='https://github.com/cmastudios' target='blank'>Connor</a> and <a href='https://github.com/markacastle'>Mark</a>. Icons by <a href='https://iconfinder.com/iconsets/wirecons-free-vector-icons'> Timothy Miller</a>. </span>
+    </footer>
   </body>
 </html>

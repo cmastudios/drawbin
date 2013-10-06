@@ -7,3 +7,6 @@ Includes/
 *.scss
 *.coffee
 *.haml
+
+# Miscellaneus
+Sheeet/
