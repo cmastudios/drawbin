@@ -1,10 +1,42 @@
 <!doctype html>
 <html>
   <head>
+<<<<<<< HEAD
+    
+        <!-- Hammer reload -->
+          <script>
+            setInterval(function(){
+              try {
+                if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
+                ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
+                ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
+                ws.onmessage = function(){
+                  var links = document.getElementsByTagName('link'); 
+                    for (var i = 0; i < links.length;i++) { 
+                    var link = links[i]; 
+                    if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) { 
+                      href = link.href.replace(/((&|\?)hammer=)[^&]+/,''); 
+                      link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
+                    }
+                  }
+                }
+              }catch(e){}
+            }, 1000)
+          </script>
+        <!-- /Hammer reload -->
+      
+    <title>DrawBin</title>
+    <link rel='stylesheet' href='stylesheets/style.css'>
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
+    <script src='javascripts/interface.js'></script>
+<script src='javascripts/jcanvas.min.js'></script>
+=======
     <title>DrawBin</title>
     <link rel='stylesheet' href='stylesheets/style.css'>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
     <script src='javascripts/interface.js'></script>
+>>>>>>> ee0998c8a13bcf648148787603817666323282b3
   </head>
   <body>
     <header>
@@ -12,6 +44,26 @@
       <span class='tagline'>Draw an image in your browser and share it instantly!</span>
     </header>
     <div class='container'>
+<<<<<<< HEAD
+      <canvas id='drawing'>Derp... use a bettar browser!</canvas>
+      <div class='controls'>
+        <div class='primary'>
+          <img src='images/menu.svg'>
+          <br>
+          <img src='images/brush.svg'>
+          <br>
+          <img src='images/upload.svg'>
+          <br>
+          <img class='download' onclick='downloadMenu()' src='images/download.svg'>
+        </div>
+        <div class='secondary'>
+          <div class='download-menu'>
+            <img onclick='back()' class='back-button' src='images/back.svg'>
+            <span onclick="download('png')">PNG</span>
+            <span onclick="download('jpeg')">JPEG</span>
+          </div>
+        </div>
+=======
       <div class='secondary-controls'></div>
       <canvas id='drawing'>Derp... use a bettar browser!</canvas>
       <div class='primary-controls'>
@@ -22,6 +74,7 @@
         <img onclick='upload()' src='images/upload.svg'>
         <br>
         <img onclick='download()' src='images/download.svg'>
+>>>>>>> ee0998c8a13bcf648148787603817666323282b3
       </div>
     </div>
     <footer>
