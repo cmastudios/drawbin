@@ -1,10 +1,12 @@
 <!doctype html>
 <html>
   <head>
+    <!-- @reload -->
     <title>DrawBin</title>
-    <link rel='stylesheet' href='stylesheets/style.css'>
-    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-    <script src='javascripts/interface.js'></script>
+    <!-- @stylesheet style -->
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <script src='//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
+    <!-- @javascript interface.js jcanvas.min.js -->
   </head>
   <body>
     <header>
@@ -12,16 +14,24 @@
       <span class='tagline'>Draw an image in your browser and share it instantly!</span>
     </header>
     <div class='container'>
-      <div class='secondary-controls'></div>
       <canvas id='drawing'>Derp... use a bettar browser!</canvas>
-      <div class='primary-controls'>
-        <img onclick='menu()' src='images/menu.svg'>
-        <br>
-        <img onclick='brushes()' src='images/brush.svg'>
-        <br>
-        <img onclick='upload()' src='images/upload.svg'>
-        <br>
-        <img onclick='download()' src='images/download.svg'>
+      <div class='controls'>
+        <div class='primary'>
+          <img src='images/menu.svg'>
+          <br>
+          <img src='images/brush.svg'>
+          <br>
+          <img src='images/upload.svg'>
+          <br>
+          <img class='download' onclick='downloadMenu()' src='images/download.svg'>
+        </div>
+        <div class='secondary'>
+          <div class='download-menu'>
+            <img onclick='back()' class='back-button' src='images/back.svg'>
+            <span onclick="download('png')">PNG</span>
+            <span onclick="download('jpeg')">JPEG</span>
+          </div>
+        </div>
       </div>
     </div>
     <footer>
