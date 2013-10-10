@@ -1,0 +1,40 @@
+// Variables //
+$lime: #A9E472
+$maroon: #800040
+$azure: #F0FFFF
+$wavy-pattern: url('cartographer.png')
+$red-border: $maroon solid 5px
+
+// Colors, Fonts, Visual Effects etc. //
+body
+  background: $wavy-pattern
+  font-family: Chalkduster
+  text-align: center
+  color: $lime
+
+canvas
+  border: $maroon solid 5px
+  background: $azure
+
+a
+  color: $lime
+
+// Layout, Sizing, Positioning etc. //
+h1
+  display: inline-block
+
+.container
+  margin: auto
+  display: flex
+  flex-direction: row
+
+.controls
+  flex: 10
+  .primary img, .secondary img
+    width: 100%
+    border: $red-border
+    background: $maroon
+  .secondary
+    display: none
+  .secondary span
+    background: $maroon
