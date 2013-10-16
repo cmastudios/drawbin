@@ -17,25 +17,43 @@
       <canvas id='drawing'>Derp... use a bettar browser!</canvas>
       <div class='controls'>
         <div class='primary'>
-          <img src='images/menu.svg'>
-          <br>
-          <img src='images/brush.svg'>
-          <br>
-          <img src='images/upload.svg'>
-          <br>
-          <img class='download' onclick='downloadMenu()' src='images/download.svg'>
+          <img onclick="show('.menu')" src='<!-- @path menu.svg -->'>
+          <img onclick="show('.brush')" src='<!-- @path brush.svg -->'>
+          <img onclick="show('.share')" src='<!-- @path share.svg -->'>
+          <img onclick="show('.upload')" src='<!-- @path upload.svg -->'>
+          <img onclick="show('.download')" src='<!-- @path download.svg -->'>
         </div>
         <div class='secondary'>
-          <div class='download-menu'>
-            <img onclick='back()' class='back-button' src='images/back.svg'>
-            <span onclick="download('png')">PNG</span>
-            <span onclick="download('jpeg')">JPEG</span>
+          <div class='menu'>
+            <img onclick="hide('.menu')" src='<!-- @path back.svg -->'>
+            <img onclick="resize()" src='<!-- @path resize.svg -->'>
+          </div>
+          <div class='brush'>
+            <img onclick="hide('.brush')" src='<!-- @path back.svg -->'>
+          </div>
+          <div class='share'>
+            <img onclick="hide('.share')" src='<!-- @path back.svg -->'>
+            <img onclick="share('facebook')" src='<!-- @path facebook.svg -->'>
+            <img onclick="share('twitter')" src='<!-- @path twitter.svg -->'>
+            <img onclick="share('google')" src='<!-- @path google.svg -->'>
+            <img onclick="share('dribble')" src='<!-- @path dribble.svg -->'>
+            <img onclick="share('instagram')" src='<!-- @path instagram.svg -->'>
+          </div>
+          <div class='upload'>
+            <img onclick="hide('.upload')" src='<!-- @path back.svg -->'>
+            <img onclick="upload('drive')" src='<!-- @path drive.svg -->'>
+            <img onclick="upload('dropbox')" src='<!-- @path dropbox.svg -->'>
+          </div>
+          <div class='download'>
+            <img onclick="hide('.download')" src='<!-- @path back.svg -->'>
+            <img onclick="download('png')" src='<!-- @path png.svg -->'>
+            <img onclick="download('jpeg')" src='<!-- @path jpeg.svg -->'>
           </div>
         </div>
       </div>
     </div>
     <footer>
-      <span> Made by <a href='https://github.com/cmastudios' target='blank'>Connor</a> and <a href='https://github.com/markacastle'>Mark</a>. Icons by <a href='https://iconfinder.com/iconsets/wirecons-free-vector-icons'> Timothy Miller</a>. </span>
+      <span> Made by <a href='https://github.com/cmastudios' target='blank'>Connor</a> and <a href='https://github.com/markacastle'>Mark</a>, with icons and other creative content by <a href='#'>awesome people</a>.</span>
     </footer>
   </body>
 </html>
