@@ -1,8 +1,8 @@
+var drawingWidth = 750;
+var drawingHeight = 500;
 jQuery(document).ready(function() {
   //var drawingWidth = parseInt(prompt('Drawing width in pixels?'));
   //var drawingHeight = parseInt(prompt('Drawing height in pixels?'));
-  var drawingWidth = 750;
-  var drawingHeight = 500;
   jQuery('#drawing').width(drawingWidth);
   jQuery('#drawing').height(drawingHeight);
   jQuery('.container').css('width', drawingWidth + .05 * jQuery(window).width());
