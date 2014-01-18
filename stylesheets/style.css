@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Finger+Paint);
 body {
-    background: url(../images/cartographer.png);
+    background: #222222 url(../images/cartographer.png);
     font-family: Chalkduster, Finger Paint, cursive;
     text-align: center;
     color: #a9e472;
