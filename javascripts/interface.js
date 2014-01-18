@@ -1,5 +1,6 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
+// @license magnet:?xt=urn:btih:5305d91886084f776adcf57509a648432709a7c7&dn=x11.txt MIT
 "use strict";
 var drawingWidth = 750;
 var drawingHeight = 500;
@@ -82,3 +83,4 @@ function show(menu) {
     jQuery('.controls .primary').hide('slow');
     jQuery('.controls .secondary').show('slow');
 }
+// @license-end
