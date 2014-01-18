@@ -1,31 +1,45 @@
+@import url(http://fonts.googleapis.com/css?family=Finger+Paint);
 body {
-  background: url(../images/cartographer.png);
-  font-family: Chalkduster;
-  text-align: center;
-  color: #a9e472; }
+    background: url(../images/cartographer.png);
+    font-family: Chalkduster, Finger Paint, cursive;
+    text-align: center;
+    color: #a9e472;
+    padding-bottom: 25em;
+}
 
 canvas {
-  border: #800040 solid 5px;
-  background: azure; }
+    border: #800040 solid 5px;
+    background: azure;
+}
 
 a {
-  color: #a9e472; }
+    color: #a9e472;
+}
 
 h1 {
-  display: inline-block; }
+    display: inline-block;
+}
 
 .container {
-  margin: auto;
-  display: flex;
-  flex-direction: row; }
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
 
 .controls {
-  flex: 10; }
-  .controls .primary img, .controls .secondary img {
+    flex: 10;
+}
+.controls .primary img, .controls .secondary img {
     width: 100%;
     border: #800040 solid 5px;
-    background: #800040; }
-  .controls .secondary {
-    display: none; }
-  .controls .secondary span {
-    background: #800040; }
+    background: #800040; 
+}
+.controls .secondary {
+    display: none;
+}
+.controls .secondary span {
+    background: #800040;
+}
+.controls .secondary .submenu {
+    display: none;
+}
