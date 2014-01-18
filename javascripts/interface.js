@@ -62,6 +62,14 @@ function upload(endpoint) {
     case 'dropbox':
         alert('Upload to Dropbox not yet implemented.');
         break;
+    case 'imgur':
+        var dataUrl = document.getElementById('drawing').toDataURL().split(',')[1];
+        $.post('http://api.imgur.com/2/upload.json', { image: dataUrl, key: '3bb2539daf5c6689003a63dafd56d304', type: 'base64'}, function(data) {
+            prompt('Copy this URL below to the image', data.upload.links.imgur_page + '.png');
+        }).fail(function onFail() {
+            alert('Image upload failed. Try again later.');
+        });
+        break;
     default:
         alert('Done diggity not found');
         break;
