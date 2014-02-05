@@ -25,12 +25,11 @@ h1 {
     display: flex;
     flex-direction: row;
 }
-
 .controls {
     flex: 10;
 }
 .controls .primary img, .controls .secondary img {
-    width: 100%;
+    width: 4em;
     border: #800040 solid 5px;
     background: #800040; 
 }

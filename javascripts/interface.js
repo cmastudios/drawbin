@@ -13,18 +13,26 @@ function drawSample() {
     });
 }
 jQuery(document).ready(function onLoad() {
-    jQuery('#drawing').width(drawingWidth);
-    jQuery('#drawing').height(drawingHeight);
+    $('#drawing').attr({width: drawingWidth, height: drawingHeight});
     jQuery('.container').css('width', drawingWidth + 0.05 * jQuery(window).width());
     drawSample();
 });
 
 jQuery(window).on('resize', function onResize() {
-    jQuery('.container').css('width', drawingWidth + 0.05 * jQuery(window).width());
+    jQuery('.container').css('width', drawingWidth + 0.05 * jQuery(window).width()); // @mark does this even do anything?
 });
 
 function resize() {
-    alert('Not implemented yet.');
+    var newWidth = parseInt(prompt('WARNING: Resize will clear the drawing\nCanvas width in pixels', drawingWidth)),
+        newHeight = parseInt(prompt('Canvas height in pixels', drawingHeight));
+    if (isNaN(newWidth) || isNaN(newHeight)) {
+        alert('Invalid input');
+    } else {
+        drawingWidth = newWidth;
+        drawingHeight = newHeight;
+        $('#drawing').attr({width: drawingWidth, height: drawingHeight});
+        jQuery('.container').css('width', drawingWidth + 0.05 * jQuery(window).width());
+    }
 }
 
 function convertCanvas(format) {
@@ -64,7 +72,7 @@ function upload(endpoint) {
         break;
     case 'imgur':
         var dataUrl = document.getElementById('drawing').toDataURL().split(',')[1];
-        $.post('http://api.imgur.com/2/upload.json', { image: dataUrl, key: '3bb2539daf5c6689003a63dafd56d304', type: 'base64'}, function(data) {
+        $.post('http://api.imgur.com/2/upload.json', { image: dataUrl, key: '3bb2539daf5c6689003a63dafd56d304', type: 'base64'}, function onReceive(data) {
             prompt('Copy this URL below to the image', data.upload.links.imgur_page + '.png');
         }).fail(function onFail() {
             alert('Image upload failed. Try again later.');
@@ -77,7 +85,7 @@ function upload(endpoint) {
 }
 
 function download(format) {
-    window.location = convertCanvas(format);
+    window.open(convertCanvas(format), '_blank');
 }
 
 function hide(menu) {
