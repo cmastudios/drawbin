@@ -12,13 +12,28 @@ function drawSample() {
     radius: 50
   });
 }
-var currentlyDrawing = false, lastMouseX = 0, lastMouseY = 0, drawColor = "black";
+var currentlyDrawing = false, lastMouseX = 0, lastMouseY = 0, drawColor = "black", thickness = 5;
 function onCanvasMouseDown(event) {
   if (event.which !== 1) {
     return; // ignore non-left clicks
   }
   event.preventDefault();
   currentlyDrawing = true;
+  var mouseX, mouseY, context = event.target.getContext("2d");
+  if (event.offsetX) {
+    mouseX = event.offsetX;
+    mouseY = event.offsetY;
+  } else if (event.layerX) {
+    mouseX = event.layerX;
+    mouseY = event.layerY;
+  }
+  context.beginPath();
+  context.moveTo(mouseX, mouseY);
+  context.lineTo(mouseX + 1, mouseY + 1);
+  context.strokeStyle = drawColor;
+  context.lineCap = "round";
+  context.lineWidth = thickness;
+  context.stroke();
 }
 function onCanvasMouseUp(event) {
   currentlyDrawing = false;
@@ -41,6 +56,8 @@ function onCanvasMouseMove(event) {
   context.moveTo(lastMouseX === 0 ? mouseX : lastMouseX, lastMouseY === 0 ? mouseY : lastMouseY);
   context.lineTo(mouseX, mouseY);
   context.strokeStyle = drawColor;
+  context.lineCap = "round";
+  context.lineWidth = thickness;
   context.stroke();
   lastMouseX = mouseX;
   lastMouseY = mouseY;
@@ -76,7 +93,11 @@ function convertCanvas(format) {
 }
 
 function chcolor() {
-  var drawColor = prompt("New color for drawing", "black");
+  drawColor = prompt("New color for drawing", drawColor);
+}
+
+function chtype() {
+  thickness = prompt("New brush thickness", thickness);
 }
 
 function share(service) {
