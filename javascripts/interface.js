@@ -1,5 +1,5 @@
-/*jslint browser: true*/
-/*global $, jQuery, alert*/
+/*jslint browser: true, node: true*/
+/*global $, jQuery, alert, prompt*/
 // @license magnet:?xt=urn:btih:5305d91886084f776adcf57509a648432709a7c7&dn=x11.txt MIT
 "use strict";
 var drawingWidth = 750;
@@ -23,8 +23,8 @@ jQuery(window).on('resize', function onResize() {
 });
 
 function resize() {
-    var newWidth = parseInt(prompt('WARNING: Resize will clear the drawing\nCanvas width in pixels', drawingWidth)),
-        newHeight = parseInt(prompt('Canvas height in pixels', drawingHeight));
+    var dimensions = prompt('WARNING: Resize will clear the drawing\nCanvas dimensions', drawingWidth + "x" + drawingHeight).split("x"),
+        newWidth = parseInt(dimensions[0], 10), newHeight = parseInt(dimensions[1], 10);
     if (isNaN(newWidth) || isNaN(newHeight)) {
         alert('Invalid input');
     } else {
