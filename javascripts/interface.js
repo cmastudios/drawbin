@@ -12,7 +12,7 @@ function drawSample() {
     radius: 50
   });
 }
-var currentlyDrawing = false, lastMouseX = 0, lastMouseY = 0;
+var currentlyDrawing = false, lastMouseX = 0, lastMouseY = 0, drawColor = "black";
 function onCanvasMouseDown(event) {
   if (event.which !== 1) {
     return; // ignore non-left clicks
@@ -40,7 +40,7 @@ function onCanvasMouseMove(event) {
   context.beginPath();
   context.moveTo(lastMouseX === 0 ? mouseX : lastMouseX, lastMouseY === 0 ? mouseY : lastMouseY);
   context.lineTo(mouseX, mouseY);
-  context.strokeStyle = "red";
+  context.strokeStyle = drawColor;
   context.stroke();
   lastMouseX = mouseX;
   lastMouseY = mouseY;
@@ -73,6 +73,10 @@ function resize() {
 
 function convertCanvas(format) {
   return $('canvas').getCanvasImage(format);
+}
+
+function chcolor() {
+  var drawColor = prompt("New color for drawing", "black");
 }
 
 function share(service) {

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="32px"
+   height="32px"
+   id="svg2985"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="painttray.svg">
+  <title
+     id="title3819">Paint Tray</title>
+  <defs
+     id="defs2987" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="15.836083"
+     inkscape:cx="2.9962035"
+     inkscape:cy="15.42025"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1440"
+     inkscape:window-height="852"
+     inkscape:window-x="0"
+     inkscape:window-y="624"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata2990">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Paint Tray</dc:title>
+        <dc:date>2/16/2014</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Connor Monahan</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title />
+          </cc:Agent>
+        </dc:rights>
+        <dc:description>A simple paint tray graphic for use on DrawBin</dc:description>
+        <dc:source>https://github.com/cmastudios/drawbin/</dc:source>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <path
+       style="opacity:1;fill:#4dffeb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="M 16 3.25 C 7.2208943 3.25 0.09375 8.933944 0.09375 15.9375 C 0.09375 22.941056 7.2208943 28.59375 16 28.59375 C 24.779106 28.59375 31.875 22.941056 31.875 15.9375 C 31.875 8.933944 24.779106 3.25 16 3.25 z M 19.8125 5.03125 C 21.193212 5.03125 22.3125 6.1505381 22.3125 7.53125 C 22.3125 8.9119619 21.193212 10.03125 19.8125 10.03125 C 18.431788 10.03125 17.3125 8.9119619 17.3125 7.53125 C 17.3125 6.1505381 18.431788 5.03125 19.8125 5.03125 z M 7.34375 10 C 9.8290319 10 11.84375 12.014718 11.84375 14.5 C 11.84375 16.985281 9.8290319 19 7.34375 19 C 4.8584685 19 2.84375 16.985281 2.84375 14.5 C 2.84375 12.014718 4.8584685 10 7.34375 10 z M 26.875 10.65625 C 28.255712 10.65625 29.375 11.775538 29.375 13.15625 C 29.375 14.536962 28.255712 15.65625 26.875 15.65625 C 25.494288 15.65625 24.375 14.536962 24.375 13.15625 C 24.375 11.775538 25.494288 10.65625 26.875 10.65625 z M 25.03125 19.09375 C 26.411962 19.09375 27.53125 20.213038 27.53125 21.59375 C 27.53125 22.974462 26.411962 24.09375 25.03125 24.09375 C 23.650538 24.09375 22.53125 22.974462 22.53125 21.59375 C 22.53125 20.213038 23.650538 19.09375 25.03125 19.09375 z "
+       id="path2995" />
+  </g>
+</svg>
