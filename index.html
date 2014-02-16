@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>DrawBin</title>
     <link rel='stylesheet' href='stylesheets/style.css'>
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
@@ -9,52 +10,62 @@
     <script src='javascripts/jcanvas.min.js'></script>
   </head>
   <body>
-    <header>
-      <h1>DrawBin</h1>
-      <span class='tagline'>Draw an image in your browser and share it instantly!</span>
-    </header>
-    <div class='container'>
-      <canvas id='drawing'>Derp... use a bettar browser!</canvas>
-      <div class='controls'>
-        <div class='primary'>
-          <img onclick="show('.menu')" src='images/menu.svg'>
-          <img onclick="show('.brush')" src='images/brush.svg'>
-          <img onclick="show('.share')" src='images/share.svg'>
-          <img onclick="show('.upload')" src='images/upload.svg'>
-          <img onclick="show('.download')" src='images/download.svg'>
-        </div>
-        <div class='secondary'>
-          <div class='menu submenu'>
-            <img onclick="hide('.menu')" src='images/back.svg'>
-            <img onclick="resize()" src='images/resize.svg'>
+    <div class="page-top">
+      <header>
+        <h1>DrawBin</h1>
+        <span class='tagline'>Draw an image in your browser and share it instantly!</span>
+      </header>
+      <div class='container'>
+        <canvas id='drawing'>Derp... use a bettar browser!</canvas>
+        <div class='controls'>
+          <div class='primary'>
+            <img onclick="show('.menu')" src='images/menu.svg' alt='Menu'>
+            <img onclick="show('.brush')" src='images/brush.svg' alt='Brush'>
+            <img onclick="show('.share')" src='images/share.svg' alt='Share'>
+            <img onclick="show('.upload')" src='images/upload.svg' alt='Upload'>
+            <img onclick="show('.download')" src='images/download.svg' alt='Download'>
           </div>
-          <div class='brush submenu'>
-            <img onclick="hide('.brush')" src='images/back.svg'>
-          </div>
-          <div class='share submenu'>
-            <img onclick="hide('.share')" src='images/back.svg'>
-            <img onclick="share('facebook')" src='images/facebook.svg'>
-            <img onclick="share('twitter')" src='images/twitter.svg'>
-            <img onclick="share('google')" src='images/google.svg'>
-            <img onclick="share('dribble')" src='images/dribble.svg'>
-            <img onclick="share('instagram')" src='images/instagram.svg'>
-          </div>
-          <div class='upload submenu'>
-            <img onclick="hide('.upload')" src='images/back.svg'>
-            <img onclick="upload('drive')" src='images/drive.svg'>
-            <img onclick="upload('dropbox')" src='images/dropbox.svg'>
-            <img onclick="upload('imgur')" src='images/imgur.svg'>
-          </div>
-          <div class='download submenu'>
-            <img onclick="hide('.download')" src='images/back.svg'>
-            <img onclick="download('png')" src='images/png.svg'>
-            <img onclick="download('jpeg')" src='images/jpeg.svg'>
+          <div class='secondary'>
+            <div class='menu submenu'>
+              <img onclick="hide('.menu')" src='images/back.svg' alt='Back'>
+              <img onclick="resize()" src='images/resize.svg' alt='Resize Canvas'>
+            </div>
+            <div class='brush submenu'>
+              <img onclick="hide('.brush')" src='images/back.svg' alt='Back'>
+            </div>
+            <div class='share submenu'>
+              <img onclick="hide('.share')" src='images/back.svg' alt='Back'>
+              <img onclick="share('facebook')" src='images/facebook.svg' alt='Share on Facebook'>
+              <img onclick="share('twitter')" src='images/twitter.svg' alt='Share on Twitter'>
+              <img onclick="share('google')" src='images/google.svg' alt='Share on Google+'>
+              <img onclick="share('dribble')" src='images/dribble.svg' alt='Share on Dribble'>
+              <img onclick="share('instagram')" src='images/instagram.svg' alt='Share on Instagram'>
+            </div>
+            <div class='upload submenu'>
+              <img onclick="hide('.upload')" src='images/back.svg' alt='Back'>
+              <img onclick="upload('drive')" src='images/drive.svg' alt='Save to Google Drive'>
+              <img onclick="upload('dropbox')" src='images/dropbox.svg' alt='Save to Dropbox'>
+              <img onclick="upload('imgur')" src='images/imgur.svg' alt='Save to Imgur'>
+            </div>
+            <div class='download submenu'>
+              <img onclick="hide('.download')" src='images/back.svg' alt='Back'>
+              <img onclick="download('png')" src='images/png.svg' alt='Download as PNG'>
+              <img onclick="download('jpeg')" src='images/jpeg.svg' alt='Download as JPEG'>
+            </div>
           </div>
         </div>
       </div>
+      <footer>
+        <span> Made by <a href='https://github.com/cmastudios' target='blank'>Connor</a> and <a href='https://github.com/markacastle123'>Mark</a>, with icons and other creative content by <a href='#credits'>awesome people</a>.</span>
+      </footer>
     </div>
-    <footer>
-      <span> Made by <a href='https://github.com/cmastudios' target='blank'>Connor</a> and <a href='https://github.com/markacastle123'>Mark</a>, with icons and other creative content by <a href='#'>awesome people</a>.</span>
-    </footer>
+    <div class="under">
+      <p id="credits">
+        Special thanks to the following people for various media items used by DrawBin:
+      </p>
+      <ul>
+        <li><a href="https://www.iconfinder.com/iconsets/wirecons-free-vector-icons#readme">Timothy Miller</a></li>
+      </ul>
+    </div>
   </body>
 </html>

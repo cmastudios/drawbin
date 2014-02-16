@@ -1,10 +1,18 @@
 @import url(http://fonts.googleapis.com/css?family=Finger+Paint);
 body {
-    background: #222222 url(../images/cartographer.png);
-    font-family: Chalkduster, Finger Paint, cursive;
-    text-align: center;
-    color: #a9e472;
-    padding-bottom: 25em;
+  background: #222222 url(../images/cartographer.png);
+  font-family: Chalkboard, Helvetica, Arial, sans-serif;
+  color: #d8f2c0;
+}
+
+header, footer {
+  font-family: Chalkduster, Finger Paint, cursive;
+  color: #a9e472;
+  text-align: center;
+}
+
+body, html {
+  height: 100%;
 }
 
 canvas {
@@ -41,4 +49,14 @@ h1 {
 }
 .controls .secondary .submenu {
     display: none;
+}
+
+.under {
+  padding: 5em;
+}
+
+.page-top {
+  display: block;
+  min-height: 100%;
+  padding-bottom: 2em;
 }
