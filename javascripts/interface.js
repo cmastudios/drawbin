@@ -4,6 +4,28 @@
 "use strict";
 var drawingWidth = 750;
 var drawingHeight = 500;
+
+var MAX_HISTORY_LENGTH = 50;
+
+var canvasHistory = [];
+var historyIterator = 0;
+
+function clearHistoryToIterator() {
+  while (canvasHistory.length > historyIterator + 1) {
+    canvasHistory.pop();
+  }
+}
+
+function saveCanvasState() {
+  clearHistoryToIterator();
+  var canvas = document.getElementById('drawing').getContext('2d');
+  canvasHistory.push(canvas.getImageData(0, 0, drawingWidth, drawingHeight));
+  if (canvasHistory.length > MAX_HISTORY_LENGTH) {
+    canvasHistory.shift();
+  }
+  historyIterator = canvasHistory.length - 1;
+}
+
 function drawSample() {
   $('#drawing').drawArc({
     fillStyle: 'orange',
@@ -11,8 +33,21 @@ function drawSample() {
     y: 75,
     radius: 50
   });
+  saveCanvasState();
 }
-var currentlyDrawing = false, lastMouseX = 0, lastMouseY = 0, drawColor = "black", thickness = 5;
+
+$(window).bind('beforeunload', function () {
+  if (historyIterator > 0) {
+    return 'You have created a drawing.';
+  }
+});
+
+var currentlyDrawing = false;
+var lastMouseX = 0;
+var lastMouseY = 0;
+var drawColor = "black";
+var thickness = 5;
+
 function onCanvasMouseDown(event) {
   if (event.which !== 1) {
     return; // ignore non-left clicks
@@ -41,6 +76,7 @@ function onCanvasMouseUp(event) {
   currentlyDrawing = false;
   lastMouseX = 0;
   lastMouseY = 0;
+  saveCanvasState();
 }
 
 function onCanvasMouseMove(event) {
@@ -99,7 +135,30 @@ function resize() {
     drawingHeight = newHeight;
     $('#drawing').attr({width: drawingWidth, height: drawingHeight});
     $('.container').css('width', drawingWidth + 0.05 * $(window).width());
+    historyIterator = -1;
+    clearHistoryToIterator();
+    saveCanvasState();
   }
+}
+
+function undo() {
+  if (historyIterator === 0) {
+    alert('Nothing to undo!');
+    return;
+  }
+  var canvas = document.getElementById('drawing').getContext('2d');
+  historyIterator -= 1;
+  canvas.putImageData(canvasHistory[historyIterator], 0, 0);
+}
+
+function redo() {
+  if (canvasHistory.length - historyIterator < 2) {
+    alert('Nothing to redo!');
+    return;
+  }
+  var canvas = document.getElementById('drawing').getContext('2d');
+  historyIterator += 1;
+  canvas.putImageData(canvasHistory[historyIterator], 0, 0);
 }
 
 function convertCanvas(format) {
