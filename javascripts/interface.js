@@ -1,5 +1,5 @@
-/*jslint browser: true, node: true, indent: 2*/
-/*global $, jQuery, alert, prompt*/
+/*jslint browser: true, node: true, indent: 2, plusplus: true*/
+/*global $, jQuery, alert, prompt, Dropbox, ArrayBuffer, Uint8Array, atob*/
 // @license magnet:?xt=urn:btih:5305d91886084f776adcf57509a648432709a7c7&dn=x11.txt MIT
 "use strict";
 var drawingWidth = 750;
@@ -200,29 +200,32 @@ var uploadXhr;
 var dbclient = new Dropbox.Client({ key: "ybhbcc7n7korjqf" });
 dbclient.authDriver(new Dropbox.AuthDriver.Popup({
   // We need a SSL cert and CloudFlare pro for this to work on our own domain
-  receiverUrl: "https://cmastudios.me/oauth-receiver-dropbox.html"}));
-var xhrListener = function(dbXhr) {
+  receiverUrl: "https://cmastudios.me/oauth-receiver-dropbox.html"
+}));
+var xhrListener = function (dbXhr) {
   uploadXhr = dbXhr;
 };
 dbclient.onXhr.addListener(xhrListener);
 
 function makeid(length) {
-  var text = "";
-  var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
-  for (var i=0; i < length; i++) {
+  var i, text = "", possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+  for (i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
 }
 
 function str2ab(str) {
-   var buf = new ArrayBuffer(str.length);
-   var bufView = new Uint8Array(buf);
-   for (var i=0, strLen=str.length; i<strLen; i++) {
-     bufView[i] = str.charCodeAt(i);
-   }
-   return buf;
- }
+  var i, strLen, buf = new ArrayBuffer(str.length), bufView = new Uint8Array(buf);
+  for (i = 0, strLen = str.length; i < strLen; i++) {
+    bufView[i] = str.charCodeAt(i);
+  }
+  return buf;
+}
+
+function getCanvasDataPNG64() {
+  return document.getElementById('drawing').toDataURL().split(',')[1];
+}
 
 function dbError(error) {
   $("#dialog-upload").dialog("close");
@@ -246,14 +249,13 @@ function dbError(error) {
 
 function dbUpload() {
   $("#dialog-upload").dialog("open");
-  dbclient.authenticate(function(error, client) {
+  dbclient.authenticate(function (error, client) {
     if (error) {
       return dbError(error);
     }
     // 1. Get Base64 PNG data. 2. Decode base64. 3. Convert string to byte array
-    var imgData = str2ab(atob(document.getElementById('drawing').toDataURL().split(',')[1]));
-    var filename = makeid(7) + ".png";
-    dbclient.writeFile(filename, imgData, function(error, stat) {
+    var imgData = str2ab(atob(getCanvasDataPNG64())), filename = makeid(7) + ".png";
+    dbclient.writeFile(filename, imgData, function (error, stat) {
       if (error) {
         return dbError(error);
       }
@@ -277,9 +279,9 @@ function upload(endpoint) {
     uploadXhr = $.post('http://api.imgur.com/2/upload.json',
                        { image: dataUrl, key: '3bb2539daf5c6689003a63dafd56d304', type: 'base64'},
                        function onReceive(data) {
-     $("#dialog-upload").dialog("close");
-      prompt('Copy this URL below to the image', data.upload.links.imgur_page + '.png');
-    }).fail(function onFail() {
+        $("#dialog-upload").dialog("close");
+        prompt('Copy this URL below to the image', data.upload.links.imgur_page + '.png');
+      }).fail(function onFail() {
       alert('Image upload failed. Try again later.');
     });
     break;
@@ -289,16 +291,16 @@ function upload(endpoint) {
   }
 }
 
-$(function() {
+$(function () {
   $("#upload-progress").progressbar({
     value: false
   });
   $("#dialog-upload").dialog({
     modal: true,
     buttons: {
-      Cancel: function() {
+      Cancel: function () {
         uploadXhr.abort();
-        $(this).dialog( "close" );
+        $(this).dialog("close");
       }
     }
   });
