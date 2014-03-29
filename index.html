@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>DrawBin</title>
     <link rel='stylesheet' href='stylesheets/style.css'>
+    <link rel='stylesheet' href='stylesheets/jquery-ui.min.css'>
     <script src='javascripts/jquery.min.js'></script>
     <script src='javascripts/jquery-ui.min.js'></script>
     <script src='javascripts/jcanvas.min.js'></script>
@@ -57,6 +58,10 @@
               <img onclick="download('jpeg')" src='images/jpeg.svg' alt='Download as JPEG'>
             </div>
           </div>
+        </div>
+        <div id="dialog-upload" title="Upload in progress">
+          <p>Your DrawBin creation is currently being uploaded. Please wait.</p>
+          <div id="upload-progress"></div>
         </div>
       </div>
       <footer>

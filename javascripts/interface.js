@@ -196,6 +196,8 @@ function share(service) {
   }
 }
 
+var uploadXhr;
+
 function upload(endpoint) {
   switch (endpoint) {
   case 'drive':
@@ -205,8 +207,12 @@ function upload(endpoint) {
     alert('Upload to Dropbox not yet implemented.');
     break;
   case 'imgur':
+    $("#dialog-upload").dialog("open");
     var dataUrl = document.getElementById('drawing').toDataURL().split(',')[1];
-    $.post('http://api.imgur.com/2/upload.json', { image: dataUrl, key: '3bb2539daf5c6689003a63dafd56d304', type: 'base64'}, function onReceive(data) {
+    uploadXhr = $.post('http://api.imgur.com/2/upload.json',
+                       { image: dataUrl, key: '3bb2539daf5c6689003a63dafd56d304', type: 'base64'},
+                       function onReceive(data) {
+     $("#dialog-upload").dialog("close");
       prompt('Copy this URL below to the image', data.upload.links.imgur_page + '.png');
     }).fail(function onFail() {
       alert('Image upload failed. Try again later.');
@@ -217,6 +223,22 @@ function upload(endpoint) {
     break;
   }
 }
+
+$(function() {
+  $("#upload-progress").progressbar({
+    value: false
+  });
+  $("#dialog-upload").dialog({
+    modal: true,
+    buttons: {
+      Cancel: function() {
+        uploadXhr.abort();
+        $(this).dialog( "close" );
+      }
+    }
+  });
+  $("#dialog-upload").dialog("close");
+});
 
 function download(format) {
   window.open(convertCanvas(format), '_blank');
