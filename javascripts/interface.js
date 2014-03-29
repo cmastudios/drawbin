@@ -27,6 +27,7 @@ function onCanvasMouseDown(event) {
     mouseX = event.layerX;
     mouseY = event.layerY;
   }
+  // Draw initial point of line
   context.beginPath();
   context.moveTo(mouseX, mouseY);
   context.lineTo(mouseX + 1, mouseY + 1);
@@ -35,16 +36,19 @@ function onCanvasMouseDown(event) {
   context.lineWidth = thickness;
   context.stroke();
 }
+
 function onCanvasMouseUp(event) {
   currentlyDrawing = false;
   lastMouseX = 0;
   lastMouseY = 0;
 }
+
 function onCanvasMouseMove(event) {
   if (!currentlyDrawing) {
     return;
   }
   var mouseX, mouseY, context = event.target.getContext("2d");
+  // Calculate correct mouse position cross-browser (i think)
   if (event.offsetX) {
     mouseX = event.offsetX;
     mouseY = event.offsetY;
@@ -52,8 +56,16 @@ function onCanvasMouseMove(event) {
     mouseX = event.layerX;
     mouseY = event.layerY;
   }
+  // If the mouse has just began to move, start drawing there, not at the left side of the screen
+  if (lastMouseX === 0) {
+    lastMouseX = mouseX;
+  }
+  if (lastMouseY === 0) {
+    lastMouseY = mouseY;
+  }
+  // Draw from previous mouse position to the current mouse position
   context.beginPath();
-  context.moveTo(lastMouseX === 0 ? mouseX : lastMouseX, lastMouseY === 0 ? mouseY : lastMouseY);
+  context.moveTo(lastMouseX, lastMouseY);
   context.lineTo(mouseX, mouseY);
   context.strokeStyle = drawColor;
   context.lineCap = "round";
@@ -62,6 +74,7 @@ function onCanvasMouseMove(event) {
   lastMouseX = mouseX;
   lastMouseY = mouseY;
 }
+
 $(document).ready(function onLoad() {
   $('#drawing').attr({width: drawingWidth, height: drawingHeight});
   $('.container').css('width', drawingWidth + 0.05 * $(window).width());
@@ -75,7 +88,8 @@ $(window).on('resize', function onResize() {
 });
 
 function resize() {
-  var dimensions = prompt('WARNING: Resize will clear the drawing\nCanvas dimensions', drawingWidth + "x" + drawingHeight).split("x"),
+  var dimensions = prompt('WARNING: Resize will clear the drawing\nCanvas dimensions',
+                          drawingWidth + "x" + drawingHeight).split("x"),
     newWidth = parseInt(dimensions[0], 10),
     newHeight = parseInt(dimensions[1], 10);
   if (isNaN(newWidth) || isNaN(newHeight)) {
