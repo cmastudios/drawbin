@@ -197,6 +197,71 @@ function share(service) {
 }
 
 var uploadXhr;
+var dbclient = new Dropbox.Client({ key: "ybhbcc7n7korjqf" });
+dbclient.authDriver(new Dropbox.AuthDriver.Popup({
+  // We need a SSL cert and CloudFlare pro for this to work on our own domain
+  receiverUrl: "https://cmastudios.me/oauth-receiver-dropbox.html"}));
+var xhrListener = function(dbXhr) {
+  uploadXhr = dbXhr;
+};
+dbclient.onXhr.addListener(xhrListener);
+
+function makeid(length) {
+  var text = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i=0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
+
+function str2ab(str) {
+   var buf = new ArrayBuffer(str.length);
+   var bufView = new Uint8Array(buf);
+   for (var i=0, strLen=str.length; i<strLen; i++) {
+     bufView[i] = str.charCodeAt(i);
+   }
+   return buf;
+ }
+
+function dbError(error) {
+  $("#dialog-upload").dialog("close");
+  switch (error.status) {
+  case Dropbox.ApiError.NETWORK_ERROR:
+    alert("No internet connection");
+    break;
+  case Dropbox.ApiError.INVALID_TOKEN:
+    alert("Session expired, please try again");
+    break;
+  case Dropbox.ApiError.OVER_QUOTA:
+    alert("You do not have enough space in your Dropbox.");
+    break;
+  case Dropbox.ApiError.RATE_LIMITED:
+    alert("You've uploaded too many images to Dropbox recently! Please try again later");
+    break;
+  default:
+    alert("Unknown error occured.\nPlease try again later");
+  }
+}
+
+function dbUpload() {
+  $("#dialog-upload").dialog("open");
+  dbclient.authenticate(function(error, client) {
+    if (error) {
+      return dbError(error);
+    }
+    // 1. Get Base64 PNG data. 2. Decode base64. 3. Convert string to byte array
+    var imgData = str2ab(atob(document.getElementById('drawing').toDataURL().split(',')[1]));
+    var filename = makeid(7) + ".png";
+    dbclient.writeFile(filename, imgData, function(error, stat) {
+      if (error) {
+        return dbError(error);
+      }
+      $("#dialog-upload").dialog("close");
+      alert("File saved in dropbox as " + filename);
+    });
+  });
+}
 
 function upload(endpoint) {
   switch (endpoint) {
@@ -204,7 +269,7 @@ function upload(endpoint) {
     alert('Upload to Google Drive not yet implemented.');
     break;
   case 'dropbox':
-    alert('Upload to Dropbox not yet implemented.');
+    dbUpload();
     break;
   case 'imgur':
     $("#dialog-upload").dialog("open");
