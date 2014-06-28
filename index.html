@@ -21,42 +21,42 @@
         <canvas id='drawing'>Derp... use a bettar browser!</canvas>
         <div class='controls'>
           <div class='primary'>
-            <img onclick="show('.menu')" src='images/menu.svg' alt='Menu'>
-            <img onclick="show('.brush')" src='images/brush.svg' alt='Brush'>
-            <img onclick="show('.share')" src='images/share.svg' alt='Share'>
-            <img onclick="show('.upload')" src='images/upload.svg' alt='Upload'>
-            <img onclick="show('.download')" src='images/download.svg' alt='Download'>
+            <img id="menu" src='images/menu.svg' alt='Menu'>
+            <img id="brush" src='images/brush.svg' alt='Brush'>
+            <img id="share" src='images/share.svg' alt='Share'>
+            <img id="upload" src='images/upload.svg' alt='Upload'>
+            <img id="download" src='images/download.svg' alt='Download'>
           </div>
           <div class='secondary'>
             <div class='menu submenu'>
-              <img onclick="hide('.menu')" src='images/back.svg' alt='Back'>
-              <img onclick="resize()" src='images/resize.svg' alt='Resize Canvas'>
-              <img onclick="undo()" src='images/undo.svg' alt='Undo'>
-              <img onclick="redo()" src='images/redo.svg' alt='Redo'>
+              <img class="back" src='images/back.svg' alt='Back'>
+              <img id="resize" src='images/resize.svg' alt='Resize Canvas'>
+              <img id="undo" src='images/undo.svg' alt='Undo'>
+              <img id="redo" src='images/redo.svg' alt='Redo'>
             </div>
             <div class='brush submenu'>
-              <img onclick="hide('.brush')" src='images/back.svg' alt='Back'>
-              <img onclick="chcolor()" src='images/painttray.svg' alt='Change Brush Color'>
-              <img onclick="chtype()" src='images/drawtools.svg' alt='Change Brush'>
+              <img class="back" src='images/back.svg' alt='Back'>
+              <img id="chcolor" src='images/painttray.svg' alt='Change Brush Color'>
+              <img id="chtype" src='images/drawtools.svg' alt='Change Brush'>
             </div>
             <div class='share submenu'>
-              <img onclick="hide('.share')" src='images/back.svg' alt='Back'>
-              <img onclick="share('facebook')" src='images/facebook.svg' alt='Share on Facebook'>
-              <img onclick="share('twitter')" src='images/twitter.svg' alt='Share on Twitter'>
-              <img onclick="share('google')" src='images/google.svg' alt='Share on Google+'>
-              <img onclick="share('dribble')" src='images/dribble.svg' alt='Share on Dribble'>
-              <img onclick="share('instagram')" src='images/instagram.svg' alt='Share on Instagram'>
+              <img class="back" src='images/back.svg' alt='Back'>
+              <img id="facebook" src='images/facebook.svg' alt='Share on Facebook'>
+              <img id="twitter" src='images/twitter.svg' alt='Share on Twitter'>
+              <img id="google" src='images/google.svg' alt='Share on Google+'>
+              <img id="dribble" src='images/dribble.svg' alt='Share on Dribble'>
+              <img id="instagram" src='images/instagram.svg' alt='Share on Instagram'>
             </div>
             <div class='upload submenu'>
-              <img onclick="hide('.upload')" src='images/back.svg' alt='Back'>
-              <img onclick="upload('drive')" src='images/drive.svg' alt='Save to Google Drive'>
-              <img onclick="upload('dropbox')" src='images/dropbox.svg' alt='Save to Dropbox'>
-              <img onclick="upload('imgur')" src='images/imgur.svg' alt='Save to Imgur'>
+              <img class="back" src='images/back.svg' alt='Back'>
+              <img id="drive" src='images/drive.svg' alt='Save to Google Drive'>
+              <img id="dropbox" src='images/dropbox.svg' alt='Save to Dropbox'>
+              <img id="imgur" src='images/imgur.svg' alt='Save to Imgur'>
             </div>
             <div class='download submenu'>
-              <img onclick="hide('.download')" src='images/back.svg' alt='Back'>
-              <img onclick="download('png')" src='images/png.svg' alt='Download as PNG'>
-              <img onclick="download('jpeg')" src='images/jpeg.svg' alt='Download as JPEG'>
+              <img class="back" src='images/back.svg' alt='Back'>
+              <img id="png" src='images/png.svg' alt='Download as PNG'>
+              <img id="jpeg" src='images/jpeg.svg' alt='Download as JPEG'>
             </div>
           </div>
         </div>

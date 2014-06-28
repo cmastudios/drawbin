@@ -175,29 +175,6 @@ function chtype() {
   thickness = prompt("New brush thickness", thickness);
 }
 
-function share(service) {
-  switch (service) {
-  case 'twitter':
-    alert('Share on Twitter not yet implemented.');
-    break;
-  case 'facebook':
-    alert('Share on Facebook not yet implemented.');
-    break;
-  case 'google':
-    alert('Share on Google Plus not yet implemented.');
-    break;
-  case 'instagram':
-    alert('Share on Instagram not yet implemented.');
-    break;
-  case 'dribble':
-    alert('Share on Dribble not yet implemented.');
-    break;
-  default:
-    alert('Done diggity not found');
-    break;
-  }
-}
-
 var uploadXhr;
 var dbclient = new Dropbox.Client({ key: "ybhbcc7n7korjqf" });
 dbclient.authDriver(new Dropbox.AuthDriver.Popup({
@@ -301,23 +278,6 @@ function imUpload() {
 
 }
 
-function upload(endpoint) {
-  switch (endpoint) {
-  case 'drive':
-    alert('Upload to Google Drive not yet implemented.');
-    break;
-  case 'dropbox':
-    dbUpload();
-    break;
-  case 'imgur':
-    imUpload();
-    break;
-  default:
-    alert('Done diggity not found');
-    break;
-  }
-}
-
 $(function () {
   $("#upload-progress").progressbar({
     value: false
@@ -349,4 +309,60 @@ function show(menu) {
   $('.controls .primary').hide('slow');
   $('.controls .secondary').show('slow');
 }
+
+function unsupported() {
+  alert("Unsupported action");
+}
+
+$(function () {
+  $("#menu").click(function () {
+    show(".menu");
+  });
+
+  $("#brush").click(function () {
+    show(".brush");
+  });
+
+  $("#share").click(function () {
+    show(".share");
+  });
+
+  $("#upload").click(function () {
+    show(".upload");
+  });
+
+  $("#download").click(function () {
+    show(".download");
+  });
+
+  $(".back").click(function () {
+    hide(".menu");
+    hide(".brush");
+    hide(".share");
+    hide(".upload");
+    hide(".download");
+  });
+
+  $("#resize").click(resize);
+  $("#undo").click(undo);
+  $("#redo").click(redo);
+  $("#chcolor").click(chcolor);
+  $("#chtype").click(chtype);
+  $("#facebook").click(unsupported);
+  $("#twitter").click(unsupported);
+  $("#google").click(unsupported);
+  $("#dribble").click(unsupported);
+  $("#instagram").click(unsupported);
+  $("#drive").click(unsupported);
+  $("#imgur").click(imUpload);
+  $("#dropbox").click(dbUpload);
+
+  $("#png").click(function () {
+    download("png");
+  });
+
+  $("#jpeg").click(function () {
+    download("jpeg");
+  });
+});
 // @license-end
