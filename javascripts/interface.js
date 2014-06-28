@@ -26,13 +26,14 @@ function saveCanvasState() {
   historyIterator = canvasHistory.length - 1;
 }
 
+function clearCanvas() {
+  var context = document.getElementById('drawing').getContext('2d');
+  context.fillStyle = "rgb(255, 255, 255)";
+  context.fillRect(0, 0, drawingWidth, drawingHeight);
+}
+
 function drawSample() {
-  $('#drawing').drawArc({
-    fillStyle: 'orange',
-    x: 75,
-    y: 75,
-    radius: 50
-  });
+  clearCanvas();
   saveCanvasState();
 }
 
@@ -135,6 +136,7 @@ function resize() {
     drawingHeight = newHeight;
     $('#drawing').attr({width: drawingWidth, height: drawingHeight});
     $('.container').css('width', drawingWidth + 0.05 * $(window).width());
+    clearCanvas();
     historyIterator = -1;
     clearHistoryToIterator();
     saveCanvasState();
@@ -260,9 +262,43 @@ function dbUpload() {
         return dbError(error);
       }
       $("#dialog-upload").dialog("close");
-      alert("File saved in dropbox as " + filename);
+      $("#dialog-upload-result-text").html("Saved as " + filename);
+      $("#dialog-upload-result").dialog();
     });
   });
+}
+
+function imUpload() {
+  $("#dialog-upload").dialog("open");
+  $.ajax({
+    url: 'https://api.imgur.com/3/image',
+    method: 'POST',
+    headers: {
+      Authorization: "Client-ID 20a71f2a6043b3b",
+      Accept: 'application/json'
+    },
+    data: {
+      image: getCanvasDataPNG64(),
+      type: 'base64'
+    },
+    success: function imgurSuccess(result) {
+      $("#dialog-upload").dialog("close");
+      var link = "https://imgur.com/" + result.data.id;
+      $("#dialog-upload-result-text").html("<a href='" + link + "' target='_blank'>" + link + "</a>");
+      $("#dialog-upload-result").dialog();
+    },
+    error: function imgurFail(jqXHR, status, error) {
+      $("#dialog-upload").dialog("close");
+      switch (status) {
+      case "timeout":
+        alert("Failed to connect to imgur");
+        break;
+      default:
+        alert("Failure to upload to imgur");
+      }
+    }
+  });
+
 }
 
 function upload(endpoint) {
@@ -274,16 +310,7 @@ function upload(endpoint) {
     dbUpload();
     break;
   case 'imgur':
-    $("#dialog-upload").dialog("open");
-    var dataUrl = document.getElementById('drawing').toDataURL().split(',')[1];
-    uploadXhr = $.post('http://api.imgur.com/2/upload.json',
-                       { image: dataUrl, key: '3bb2539daf5c6689003a63dafd56d304', type: 'base64'},
-                       function onReceive(data) {
-        $("#dialog-upload").dialog("close");
-        prompt('Copy this URL below to the image', data.upload.links.imgur_page + '.png');
-      }).fail(function onFail() {
-      alert('Image upload failed. Try again later.');
-    });
+    imUpload();
     break;
   default:
     alert('Done diggity not found');
