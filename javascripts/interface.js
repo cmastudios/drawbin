@@ -168,7 +168,7 @@ function convertCanvas(format) {
 }
 
 function chcolor() {
-  drawColor = prompt("New color for drawing", drawColor);
+  $("#dialog-cpick").dialog("open");
 }
 
 function chtype() {
@@ -292,6 +292,20 @@ $(function () {
     }
   });
   $("#dialog-upload").dialog("close");
+  $("#dialog-cpick").dialog({
+    modal: true,
+    buttons: {
+      Accept: function () {
+        drawColor = $("#cpick").val();
+        $(this).dialog("close");
+      },
+      Cancel: function () {
+        $("#cpick").val(drawColor);
+        $(this).dialog("close");
+      }
+    }
+  });
+  $("#dialog-cpick").dialog("close");
 });
 
 function download(format) {
