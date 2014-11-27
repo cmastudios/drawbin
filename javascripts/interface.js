@@ -1,5 +1,5 @@
 /*jslint browser: true, node: true, indent: 2, plusplus: true*/
-/*global $, jQuery, alert, prompt, Dropbox, ArrayBuffer, Uint8Array, atob*/
+/*global $, jQuery, alert, prompt, Dropbox, ArrayBuffer, Uint8Array, atob, Hammer*/
 // @license magnet:?xt=urn:btih:5305d91886084f776adcf57509a648432709a7c7&dn=x11.txt MIT
 "use strict";
 var drawingWidth = 750;
@@ -53,86 +53,72 @@ $(window).bind('beforeunload', function () {
   }
 });
 
-var currentlyDrawing = false;
 var lastMouseX = 0;
 var lastMouseY = 0;
 var drawColor = "black";
 var thickness = 5;
 
-function onCanvasMouseDown(event) {
-  if (event.which !== 1) {
-    return; // ignore non-left clicks
-  }
-  event.preventDefault();
-  currentlyDrawing = true;
-  var mouseX, mouseY, context = event.target.getContext("2d");
-  if (event.offsetX) {
-    mouseX = event.offsetX;
-    mouseY = event.offsetY;
-  } else if (event.layerX) {
-    mouseX = event.layerX;
-    mouseY = event.layerY;
-  }
-  // Draw initial point of line
-  context.beginPath();
-  context.moveTo(mouseX, mouseY);
-  context.lineTo(mouseX + 1, mouseY + 1);
-  context.strokeStyle = drawColor;
-  context.lineCap = "round";
-  context.lineWidth = thickness;
-  context.stroke();
-}
+// Mouse and touch events, brought to you by Hammer.js. Can't touch this!
+$(function () {
+  var myElement = document.getElementById('drawing'),
+    mc = new Hammer(myElement);
 
-function onCanvasMouseUp(event) {
-  currentlyDrawing = false;
-  lastMouseX = 0;
-  lastMouseY = 0;
-  saveCanvasState();
-}
+  mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+  mc.on('panstart', function (ev) {
+    lastMouseX = ev.pointers[0].pageX - myElement.offsetLeft;
+    lastMouseY = ev.pointers[0].pageY - myElement.offsetTop;
+  });
+  mc.on('panmove', function (ev) {
+    // Draw a continuous stroke
+    var context = myElement.getContext("2d");
+    context.beginPath();
+    context.moveTo(lastMouseX, lastMouseY);
+    lastMouseX = ev.pointers[0].pageX - myElement.offsetLeft;
+    lastMouseY = ev.pointers[0].pageY - myElement.offsetTop;
+    context.lineTo(lastMouseX, lastMouseY);
+    context.strokeStyle = drawColor;
+    context.lineCap = "round";
+    context.lineWidth = thickness;
+    context.stroke();
+  });
+  mc.on('panend', function (ev) {
+    saveCanvasState();
+  });
+  mc.on('tap', function (ev) {
+    // Draw one point in a line
+    var context = event.target.getContext("2d");
+    context.beginPath();
+    lastMouseX = ev.pointers[0].pageX - myElement.offsetLeft;
+    lastMouseY = ev.pointers[0].pageY - myElement.offsetTop;
+    context.moveTo(lastMouseX, lastMouseY);
+    context.lineTo(lastMouseX + 1, lastMouseY + 1);
+    context.strokeStyle = drawColor;
+    context.lineCap = "round";
+    context.lineWidth = thickness;
+    context.stroke();
+    saveCanvasState();
+  });
+});
 
-function onCanvasMouseMove(event) {
-  if (!currentlyDrawing) {
-    return;
-  }
-  var mouseX, mouseY, context = event.target.getContext("2d");
-  // Calculate correct mouse position cross-browser (i think)
-  if (event.offsetX) {
-    mouseX = event.offsetX;
-    mouseY = event.offsetY;
-  } else if (event.layerX) {
-    mouseX = event.layerX;
-    mouseY = event.layerY;
-  }
-  // If the mouse has just began to move, start drawing there, not at the left side of the screen
-  if (lastMouseX === 0) {
-    lastMouseX = mouseX;
-  }
-  if (lastMouseY === 0) {
-    lastMouseY = mouseY;
-  }
-  // Draw from previous mouse position to the current mouse position
-  context.beginPath();
-  context.moveTo(lastMouseX, lastMouseY);
-  context.lineTo(mouseX, mouseY);
-  context.strokeStyle = drawColor;
-  context.lineCap = "round";
-  context.lineWidth = thickness;
-  context.stroke();
-  lastMouseX = mouseX;
-  lastMouseY = mouseY;
-}
-
+// Creates the canvas when the page loads
 $(document).ready(function onLoad() {
+  var mobile = window.matchMedia("only screen and (max-width: 760px)");
+  if (mobile.matches) {
+    drawingWidth = window.innerWidth - 10;
+    drawingHeight = window.innerHeight - 128;
+  }
   $('#drawing').attr({width: drawingWidth, height: drawingHeight});
   $('.container').css('width', drawingWidth + 0.05 * $(window).width());
-  $("#drawing").mousedown(onCanvasMouseDown).mouseup(onCanvasMouseUp)
-    .mousemove(onCanvasMouseMove);
   drawSample();
 });
 
+// Properly scale the relative width of the box.
+// TODO ask mark about this, might be the cause of some bugs
 $(window).on('resize', function onResize() {
   $('.container').css('width', drawingWidth + 0.05 * $(window).width());
 });
+
+// implements all the control buttons
 
 function resize() {
   var dimensions = prompt('WARNING: Resize will clear the drawing\nCanvas dimensions',

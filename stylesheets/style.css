@@ -13,6 +13,30 @@ header, footer {
 
 body, html {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1 {
+  display: inline-block;
+  font-size: 2em;
+}
+.tagline {
+  font-size: 1em;
+}
+
+@media only screen and (max-width: 760px) {
+  .tagline {
+    display: none;
+  }
+  header {
+    text-align: left;
+  }
+  h1 {
+    margin: 0;
+    font-size: 1em;
+  }
 }
 
 canvas {
@@ -22,10 +46,6 @@ canvas {
 
 a {
     color: #a9e472;
-}
-
-h1 {
-    display: inline-block;
 }
 
 .container {
