@@ -34,6 +34,16 @@ function clearCanvas() {
 
 function drawSample() {
   clearCanvas();
+  $('canvas').drawText({
+    fillStyle: '#222222',
+    strokeStyle: '#222222',
+    strokeWidth: 2,
+    x: drawingWidth - 40,
+    y: drawingHeight - 8,
+    fontSize: 13,
+    fontFamily: '"Comic Sans MS", "Ubuntu Bold", Helvetica, sans-serif',
+    text: 'drawbin.com'
+  });
   saveCanvasState();
 }
 
@@ -139,7 +149,7 @@ function resize() {
     clearCanvas();
     historyIterator = -1;
     clearHistoryToIterator();
-    saveCanvasState();
+    drawSample();
   }
 }
 
