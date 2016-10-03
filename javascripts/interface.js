@@ -175,7 +175,7 @@ var uploadXhr;
 var dbclient = new Dropbox.Client({ key: "ybhbcc7n7korjqf" });
 dbclient.authDriver(new Dropbox.AuthDriver.Popup({
   // We need a SSL cert and CloudFlare pro for this to work on our own domain
-  receiverUrl: "https://dropbox.com/oauth-receiver-dropbox.html"
+  receiverUrl: "https://cmastudios.me/oauth-receiver-dropbox.html"
 }));
 var xhrListener = function (dbXhr) {
   uploadXhr = dbXhr;
